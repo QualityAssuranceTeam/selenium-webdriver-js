@@ -46,7 +46,7 @@ describe('Mercury Tours', () => {
         });
         after('quit browser', () => driver.quit());
     });
-    context.only('User Login', () => {
+    context('User Login', () => {
         before('set browser', async () => {
             driver = await new Builder().forBrowser('chrome').build();
         });
@@ -62,6 +62,19 @@ describe('Mercury Tours', () => {
             await driver.wait(until.elementLocated(By.xpath('//a[.=\'SIGN-OFF\']')), 1000);
             const signOffButtonHref = await driver.findElement(By.xpath('//a[.=\'SIGN-OFF\']')).getAttribute('href');
             expect(signOffButtonHref).to.equal(`${loginPage.baseUrl}/mercurysignoff.php`);
+        });
+        after('quit browser', () => driver.quit());
+    });
+    context('Navigation Menu', () => {
+        before('set browser', async () => {
+            driver = await new Builder().forBrowser('chrome').build();
+        });
+        it('home button', async () => {
+            const page = new LoginPage(driver);
+            await page.goTo('/');
+            await page.clickOn(page.navigation.headerMenu.signOnButton);
+            const pageTitle = await driver.getTitle();
+            expect(pageTitle).to.have.string('Sign-on: Mercury Tours')
         });
         after('quit browser', () => driver.quit());
     });
