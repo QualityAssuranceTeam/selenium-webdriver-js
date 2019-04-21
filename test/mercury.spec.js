@@ -1,4 +1,4 @@
-//require('chromedriver');
+require('chromedriver');
 const RegisterPage = require('../pom/register.page');
 
 const chai = require('chai');

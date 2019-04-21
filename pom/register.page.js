@@ -6,11 +6,12 @@ const path = '/mercuryregister.php';
 const title = 'Register: Mercury Tours';
 
 class Register extends Page {
-    constructor(driver) {
-
+    constructor(driver) {        
         super(driver);
+    }
 
-        this.form = {
+    get form() {
+        return {
             firstName: By.name('firstName'),
             lastName: By.name('lastName'),
             phone: By.name('phone'),
@@ -26,12 +27,14 @@ class Register extends Page {
             password: By.name('password'),
             confirmPassword: By.name('confirmPassword'),
             submitButton: By.name('register')
-        };
+        }
+    }
 
-        this.cofirmRegistration = {
+    get confirmRegistration() {
+        return {
             greetingText: By.xpath('//*[contains(text(),\'Dear\')]'),
             userName: By.xpath('//*[contains(text(),\'Your user name is\')]')
-        };
+        }
     }
 
     async open(timeout = 1000) {
@@ -58,11 +61,11 @@ class Register extends Page {
     }
 
     async getGreetengText() {
-        return await this.driver.wait(until.elementLocated(this.cofirmRegistration.greetingText), 1000).getText();
+        return await this.driver.wait(until.elementLocated(this.confirmRegistration.greetingText), 1000).getText();
     }
 
     async getUserNameConfim() {
-        return await this.driver.wait(until.elementLocated(this.cofirmRegistration.userName), 1000).getText();
+        return await this.driver.wait(until.elementLocated(this.confirmRegistration.userName), 1000).getText();
     }
 
     async selectCountry() {
