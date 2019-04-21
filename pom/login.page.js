@@ -10,9 +10,9 @@ class Login extends Page {
 
     get form() {
         return {
-            userName: By.name('userName'),
-            password: By.name('password'),
-            loginButton: By.name('login')
+            userName: this.driver.findElement(By.name('userName')),
+            password: this.driver.findElement(By.name('password')),
+            loginButton: this.driver.findElement(By.name('login'))
         };
     }
 
@@ -24,10 +24,6 @@ class Login extends Page {
     async fillInForm(option = {}) {
         await this.enterText(this.form.userName, option.userName || '');
         await this.enterText(this.form.password, option.password || '');
-    }
-
-    async clickLoginButton() {
-        await this.driver.findElement(this.form.loginButton).click();
     }
 }
 

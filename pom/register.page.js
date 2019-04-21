@@ -10,28 +10,28 @@ class Register extends Page {
 
     get form() {
         return {
-            firstName: By.name('firstName'),
-            lastName: By.name('lastName'),
-            phone: By.name('phone'),
-            userName: By.name('userName'),
-            address1: By.name('address1'),
-            address2: By.name('address2'),
-            city: By.name('city'),
-            state: By.name('state'),
-            postalCode: By.name('postalCode'),
-            countryDropdown: By.name('country'),
-            countryUK: By.xpath('//select/option[contains(text(),\'UNITED KINGDOM\')]'),
-            email: By.name('email'),
-            password: By.name('password'),
-            confirmPassword: By.name('confirmPassword'),
-            submitButton: By.name('register')
+            firstName: this.driver.findElement(By.name('firstName')),
+            lastName: this.driver.findElement(By.name('lastName')),
+            phone: this.driver.findElement(By.name('phone')),
+            userName: this.driver.findElement(By.name('userName')),
+            address1: this.driver.findElement(By.name('address1')),
+            address2: this.driver.findElement(By.name('address2')),
+            city: this.driver.findElement(By.name('city')),
+            state: this.driver.findElement(By.name('state')),
+            postalCode: this.driver.findElement(By.name('postalCode')),
+            countryDropdown: this.driver.findElement(By.name('country')),
+            countryUK: this.driver.findElement(By.xpath('//select/option[contains(text(),\'UNITED KINGDOM\')]')),
+            email: this.driver.findElement(By.name('email')),
+            password: this.driver.findElement(By.name('password')),
+            confirmPassword: this.driver.findElement(By.name('confirmPassword')),
+            submitButton: this.driver.findElement(By.name('register'))
         };
     }
 
     get confirmRegistration() {
         return {
-            greetingText: By.xpath('//*[contains(text(),\'Dear\')]'),
-            userName: By.xpath('//*[contains(text(),\'Your user name is\')]')
+            greetingText: this.driver.findElement(By.xpath('//*[contains(text(),\'Dear\')]')),
+            userName: this.driver.findElement(By.xpath('//*[contains(text(),\'Your user name is\')]'))
         };
     }
 
@@ -55,22 +55,10 @@ class Register extends Page {
         await this.enterText(this.form.password, option.password || '');
         await this.enterText(this.form.confirmPassword, option.confirmPassword || '');
     }
-
-    async getGreetengText() {
-        return await this.driver.wait(until.elementLocated(this.confirmRegistration.greetingText), 1000).getText();
-    }
-
-    async getUserNameConfim() {
-        return await this.driver.wait(until.elementLocated(this.confirmRegistration.userName), 1000).getText();
-    }
-
+    
     async selectCountry() {
-        await this.driver.findElement(this.form.countryDropdown).click();
-        await this.driver.findElement(this.form.countryUK).click();
-    }
-
-    async clickSubmitButton() {
-        await this.driver.findElement(this.form.submitButton).click();
+        await this.form.countryDropdown.click();
+        await this.form.countryUK.click();
     }
 }
 
