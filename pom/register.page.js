@@ -7,7 +7,9 @@ const title = 'Register: Mercury Tours';
 
 class Register extends Page {
     constructor(driver) {
+
         super(driver);
+
         this.form = {
             firstName: By.name('firstName'),
             lastName: By.name('lastName'),
@@ -25,6 +27,7 @@ class Register extends Page {
             confirmPassword: By.name('confirmPassword'),
             submitButton: By.name('register')
         };
+
         this.cofirmRegistration = {
             greetingText: By.xpath('//*[contains(text(),\'Dear\')]'),
             userName: By.xpath('//*[contains(text(),\'Your user name is\')]')
@@ -37,20 +40,21 @@ class Register extends Page {
     }
 
     async fillInForm(option = {}) {
-        await this._enterFirstName(option.firstName);
-        await this._enterLastName(option.lastName);
-        await this._enterPhone(option.phone);
-        await this._enterUserName(option.userName);
-        await this._enterAddress1(option.address1);
-        await this._enterAddress2(option.address2);
-        await this._enterCity(option.city);
-        await this._enterState(option.state);
-        await this._enterPostalCode(option.postalCode);
-        await this._selectCountry();
-        await this._enterEmail(option.email);
-        await this._enterPassword(option.password);
-        await this._enterConfirmPassword(option.confirmPassword);
-        await this._clickSubmitButton();
+        //await this._enterFirstName(option.firstName);
+        await this.enterText(this.form.firstName, option.firstName)
+        await this.enterText(this.form.lastName, option.lastName);
+        await this.enterText(this.form.phone, option.phone);
+        await this.enterText(this.form.userName, option.userName);
+        await this.enterText(this.form.address1, option.address1);
+        await this.enterText(this.form.address2, option.address2);
+        await this.enterText(this.form.city, option.city);
+        await this.enterText(this.form.state, option.state);
+        await this.enterText(this.form.postalCode, option.postalCode);
+        await this.selectCountry();
+        await this.enterText(this.form.email, option.email);
+        await this.enterText(this.form.password, option.password);
+        await this.enterText(this.form.confirmPassword, option.confirmPassword);
+        await this.clickSubmitButton();
     }
 
     async getGreetengText() {
@@ -61,72 +65,12 @@ class Register extends Page {
         return await this.driver.wait(until.elementLocated(this.cofirmRegistration.userName), 1000).getText();
     }
 
-    async _enterFirstName(val) {
-        await this.driver.findElement(this.form.firstName).click();
-        await this.driver.findElement(this.form.firstName).sendKeys(val);
-    }
-
-    async _enterLastName(val) {
-        await this.driver.findElement(this.form.lastName).click();
-        await this.driver.findElement(this.form.lastName).sendKeys(val);
-    }
-
-    async _enterPhone(val) {
-        await this.driver.findElement(this.form.phone).click();
-        await this.driver.findElement(this.form.phone).sendKeys(val);
-    }
-
-    async _enterUserName(val) {
-        await this.driver.findElement(this.form.userName).click();
-        await this.driver.findElement(this.form.userName).sendKeys(val);
-    }
-
-    async _enterAddress1(val) {
-        await this.driver.findElement(this.form.address1).click();
-        await this.driver.findElement(this.form.address1).sendKeys(val);
-    }
-
-    async _enterAddress2(val) {
-        await this.driver.findElement(this.form.address2).click();
-        await this.driver.findElement(this.form.address2).sendKeys(val);
-    }
-
-    async _enterCity(val) {
-        await this.driver.findElement(this.form.city).click();
-        await this.driver.findElement(this.form.city).sendKeys(val);
-    }
-
-    async _enterState(val) {
-        await this.driver.findElement(this.form.state).click();
-        await this.driver.findElement(this.form.state).sendKeys(val);
-    }
-
-    async _enterPostalCode(val) {
-        await this.driver.findElement(this.form.postalCode).click();
-        await this.driver.findElement(this.form.postalCode).sendKeys(val);
-    }
-
-    async _enterEmail(val) {
-        await this.driver.findElement(this.form.email).click();
-        await this.driver.findElement(this.form.email).sendKeys(val);
-    }
-
-    async _enterPassword(val) {
-        await this.driver.findElement(this.form.password).click();
-        await this.driver.findElement(this.form.password).sendKeys(val);
-    }
-
-    async _enterConfirmPassword(val) {
-        await this.driver.findElement(this.form.confirmPassword).click();
-        await this.driver.findElement(this.form.confirmPassword).sendKeys(val);
-    }
-
-    async _selectCountry() {
+    async selectCountry() {
         await this.driver.findElement(this.form.countryDropdown).click();
         await this.driver.findElement(this.form.countryUK).click();
     }
     
-    async _clickSubmitButton() {
+    async clickSubmitButton() {
         await this.driver.findElement(this.form.submitButton).click();
     }
 }
