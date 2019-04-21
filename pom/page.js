@@ -13,10 +13,6 @@ class Page {
         await this.driver.findElement(tar).click();
         await this.driver.findElement(tar).sendKeys(val);
     }
-    
-    /* async waitForPageTitle(title, timeout = '1000') {
-        return await this.driver.wait(until.titleIs(title), timeout);
-    } */
 }
 
 module.exports = Page;
