@@ -42,19 +42,19 @@ class Register extends Page {
     }
 
     async fillInForm(option = {}) {
-        await this.enterText(this.form.firstName, option.firstName)
-        await this.enterText(this.form.lastName, option.lastName);
-        await this.enterText(this.form.phone, option.phone);
-        await this.enterText(this.form.userName, option.userName);
-        await this.enterText(this.form.address1, option.address1);
-        await this.enterText(this.form.address2, option.address2);
-        await this.enterText(this.form.city, option.city);
-        await this.enterText(this.form.state, option.state);
-        await this.enterText(this.form.postalCode, option.postalCode);
+        await this.enterText(this.form.firstName, option.firstName || '')
+        await this.enterText(this.form.lastName, option.lastName || '');
+        await this.enterText(this.form.phone, option.phone || '');
+        await this.enterText(this.form.userName, option.userName || '');
+        await this.enterText(this.form.address1, option.address1 || '');
+        await this.enterText(this.form.address2, option.address2 || '');
+        await this.enterText(this.form.city, option.city || '');
+        await this.enterText(this.form.state, option.state || '');
+        await this.enterText(this.form.postalCode, option.postalCode || '');
         await this.selectCountry();
-        await this.enterText(this.form.email, option.email);
-        await this.enterText(this.form.password, option.password);
-        await this.enterText(this.form.confirmPassword, option.confirmPassword);
+        await this.enterText(this.form.email, option.email || '');
+        await this.enterText(this.form.password, option.password || '');
+        await this.enterText(this.form.confirmPassword, option.confirmPassword || '');
         await this.clickSubmitButton();
     }
 
