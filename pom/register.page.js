@@ -34,9 +34,9 @@ class Register extends Page {
         };
     }
 
-    async goTo() {
-        await this.open(path);
-        await this.driver.wait(until.titleIs(title), 1000);
+    async open(timeout = 1000) {
+        await this.goTo(path);
+        await this.driver.wait(until.titleIs(title), timeout);
     }
 
     async fillInForm(option = {}) {

@@ -5,7 +5,7 @@ class Page {
         this.driver = driver;
     }
 
-    async open(path = '/') {
+    async goTo(path = '/') {
         await this.driver.get(`${baseUrl}${path}`);
     }
 

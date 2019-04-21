@@ -1,4 +1,4 @@
-require('chromedriver');
+//require('chromedriver');
 const RegisterPage = require('../pom/register.page');
 
 const chai = require('chai');
@@ -29,7 +29,7 @@ describe('Mercury Tours', () => {
         it('successfully register a new user', async function () {
             this.timeout(60000); // set test runner timeout up to 1 minute for this test
             const registerPage = new RegisterPage(driver);
-            await registerPage.goTo();
+            await registerPage.open();
             await registerPage.fillInForm(formData);
             const greetengText = await registerPage.getGreetengText();
             expect(greetengText).to.have.string(`${formData.firstName} ${formData.firstName}`);
