@@ -1,10 +1,10 @@
-const Navigation = require('./navigation');
+const Nav = require('./nav');
 
 class Page {
     constructor(driver) {
         this.driver = driver;
         this.baseUrl = 'http://newtours.demoaut.com';
-        this.navigation = new Navigation();
+        this.nav = new Nav(this.driver);
     }
 
     async goTo(path = '/') {
@@ -12,12 +12,8 @@ class Page {
     }
 
     async enterText(target, value) {
-        await this.driver.findElement(target).click();
-        await this.driver.findElement(target).sendKeys(value);
-    }
-
-    async clickOn(target) {
-        await this.driver.findElement(target).click();
+        await target.click();
+        await target.sendKeys(value);
     }
 }
 
