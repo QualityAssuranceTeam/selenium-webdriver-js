@@ -1,4 +1,3 @@
-//require('chromedriver');
 const Page = require('./page');
 const { Builder, Key, By, until } = require('selenium-webdriver');
 
@@ -55,7 +54,6 @@ class Register extends Page {
         await this.enterText(this.form.email, option.email || '');
         await this.enterText(this.form.password, option.password || '');
         await this.enterText(this.form.confirmPassword, option.confirmPassword || '');
-        await this.clickSubmitButton();
     }
 
     async getGreetengText() {
