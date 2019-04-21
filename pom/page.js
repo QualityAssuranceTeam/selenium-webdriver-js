@@ -1,17 +1,16 @@
-const baseUrl = 'http://newtours.demoaut.com';
-
 class Page {
     constructor(driver) {
         this.driver = driver;
+        this.baseUrl = 'http://newtours.demoaut.com';
     }
 
     async goTo(path = '/') {
-        await this.driver.get(`${baseUrl}${path}`);
+        await this.driver.get(`${this.baseUrl}${path}`);
     }
 
-    async enterText(tar, val) {
-        await this.driver.findElement(tar).click();
-        await this.driver.findElement(tar).sendKeys(val);
+    async enterText(target, value) {
+        await this.driver.findElement(target).click();
+        await this.driver.findElement(target).sendKeys(value);
     }
 }
 

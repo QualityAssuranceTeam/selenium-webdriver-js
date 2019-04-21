@@ -1,13 +1,12 @@
 //require('chromedriver');
 const Page = require('./page');
-const {Builder, Key, By, until} = require('selenium-webdriver');
-
-const path = '/mercuryregister.php';
-const title = 'Register: Mercury Tours';
+const { Builder, Key, By, until } = require('selenium-webdriver');
 
 class Register extends Page {
-    constructor(driver) {        
+    constructor(driver) {
         super(driver);
+        this.path = '/mercuryregister.php';
+        this.title = 'Register: Mercury Tours';
     }
 
     get form() {
@@ -27,23 +26,22 @@ class Register extends Page {
             password: By.name('password'),
             confirmPassword: By.name('confirmPassword'),
             submitButton: By.name('register')
-        }
+        };
     }
 
     get confirmRegistration() {
         return {
             greetingText: By.xpath('//*[contains(text(),\'Dear\')]'),
             userName: By.xpath('//*[contains(text(),\'Your user name is\')]')
-        }
+        };
     }
 
     async open(timeout = 1000) {
-        await this.goTo(path);
-        await this.driver.wait(until.titleIs(title), timeout);
+        await this.goTo(this.path);
+        await this.driver.wait(until.titleIs(this.title), timeout);
     }
 
     async fillInForm(option = {}) {
-        //await this._enterFirstName(option.firstName);
         await this.enterText(this.form.firstName, option.firstName)
         await this.enterText(this.form.lastName, option.lastName);
         await this.enterText(this.form.phone, option.phone);
@@ -72,7 +70,7 @@ class Register extends Page {
         await this.driver.findElement(this.form.countryDropdown).click();
         await this.driver.findElement(this.form.countryUK).click();
     }
-    
+
     async clickSubmitButton() {
         await this.driver.findElement(this.form.submitButton).click();
     }
