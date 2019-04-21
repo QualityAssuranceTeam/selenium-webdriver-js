@@ -1,10 +1,10 @@
-const Frame = require('./frame');
+const Navigation = require('./navigation');
 
 class Page {
     constructor(driver) {
         this.driver = driver;
         this.baseUrl = 'http://newtours.demoaut.com';
-        this.navigation = new Frame();
+        this.navigation = new Navigation();
     }
 
     async goTo(path = '/') {

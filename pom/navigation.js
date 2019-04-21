@@ -1,7 +1,6 @@
-//const Page = require('./page');
 const { Builder, Key, By, until } = require('selenium-webdriver');
 
-class Frame {
+class Navigation {
     get headerMenu() {
         return {
             signOnButton: By.xpath('//a[.=\'SIGN-ON\']'),
@@ -27,4 +26,4 @@ class Frame {
     }
 }
 
-module.exports = Frame;
+module.exports = Navigation;
