@@ -1,4 +1,6 @@
 const Nav = require('./nav');
+const { Builder, Key, By, until } = require('selenium-webdriver');
+
 
 class Page {
     constructor(driver) {

@@ -1,6 +1,7 @@
 require('chromedriver');
 const RegisterPage = require('../pom/register.page');
 const LoginPage = require('../pom/login.page');
+const FindFlights = require('../pom/findFlights.page');
 
 const chai = require('chai');
 const expect = chai.expect;
@@ -51,6 +52,41 @@ describe('Mercury Tours', () => {
             expect(pageTitle).to.have.string('Find a Flight: Mercury Tours');
             const signOffButtonHref = await loginPage.nav.headerMenuAuth.signOffButton.getAttribute('href');
             expect(signOffButtonHref).to.equal(`${loginPage.baseUrl}/mercurysignoff.php`);
+        });
+    });
+    context('Flight Finder', () => {
+        beforeEach('login user', async () => {
+            const user = { userName: 'jack.smith@example.com', password: 'test0123'};
+            const loginPage = new LoginPage(driver);
+            await loginPage.open();
+            await loginPage.fillInForm(user);
+            await loginPage.form.loginButton.click();
+            const pageTitle = await driver.getTitle();
+            expect(pageTitle).to.have.string('Find a Flight: Mercury Tours');
+        })
+        it('successfully find a flight', async () => {const flight = { passCount: '3' };
+            const findFlightsPage = new FindFlights(driver);
+            await findFlightsPage.open();
+            await findFlightsPage.button.oneWay.click();
+            await findFlightsPage.button.roundTrip.click();
+            const flightDetails = {
+                passengers: '2',
+                departing: 'London',
+                fromMonth: 'May',
+                fromDay: '11',
+                arriving: 'Paris',
+                toMonth: 'June',
+                toDay: '15'
+            };
+            await findFlightsPage.selectFlightDetails(flightDetails);
+            await findFlightsPage.button.businessClass.click();
+            await findFlightsPage.button.firstClass.click();
+            await findFlightsPage.selectOption(findFlightsPage.dropdown.airline, 'Unified Airlines');
+            await findFlightsPage.button.continueButton.click();
+            const pageTitle = await driver.getTitle();
+            expect(pageTitle).to.have.string('Select a Flight: Mercury Tours');
+            const flightInfo = await driver.findElement(By.xpath(`//b/font[contains(text(),'${flightDetails.departing} to')]`)).getText();
+            expect(flightInfo).to.have.string(`${flightDetails.departing} to ${flightDetails.arriving}`)
         });
     });
     context('Navigation Menu', () => {
