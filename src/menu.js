@@ -1,4 +1,4 @@
-const By = require('selenium-webdriver');
+const { Builder, Key, By, until } = require('selenium-webdriver');
 
 class Menu {
     constructor(driver) {
