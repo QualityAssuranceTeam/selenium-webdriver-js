@@ -1,11 +1,10 @@
-const Page = require('./page');
+const Page = require('../page');
 const { Builder, Key, By, until } = require('selenium-webdriver');
 
 class Register extends Page {
     constructor(driver) {
         super(driver);
         this.path = '/mercuryregister.php';
-        this.title = 'Register: Mercury Tours';
     }
 
     get form() {
@@ -34,25 +33,20 @@ class Register extends Page {
         };
     }
 
-    async open(timeout = 1000) {
-        await this.goTo(this.path);
-        await this.driver.wait(until.titleIs(this.title), timeout);
-    }
-
     async fillInForm(option = {}) {
-        await this.wrapper.enterText(this.form.firstName, option.firstName || '')
-        await this.wrapper.enterText(this.form.lastName, option.lastName || '');
-        await this.wrapper.enterText(this.form.phone, option.phone || '');
-        await this.wrapper.enterText(this.form.userName, option.userName || '');
-        await this.wrapper.enterText(this.form.address1, option.address1 || '');
-        await this.wrapper.enterText(this.form.address2, option.address2 || '');
-        await this.wrapper.enterText(this.form.city, option.city || '');
-        await this.wrapper.enterText(this.form.state, option.state || '');
-        await this.wrapper.enterText(this.form.postalCode, option.postalCode || '');
-        await this.wrapper.selectOption(this.form.country, option.country || '')
-        await this.wrapper.enterText(this.form.email, option.email || '');
-        await this.wrapper.enterText(this.form.password, option.password || '');
-        await this.wrapper.enterText(this.form.confirmPassword, option.confirmPassword || '');
+        await this.utils.enterText(this.form.firstName, option.firstName || '')
+        await this.utils.enterText(this.form.lastName, option.lastName || '');
+        await this.utils.enterText(this.form.phone, option.phone || '');
+        await this.utils.enterText(this.form.userName, option.userName || '');
+        await this.utils.enterText(this.form.address1, option.address1 || '');
+        await this.utils.enterText(this.form.address2, option.address2 || '');
+        await this.utils.enterText(this.form.city, option.city || '');
+        await this.utils.enterText(this.form.state, option.state || '');
+        await this.utils.enterText(this.form.postalCode, option.postalCode || '');
+        await this.utils.selectOption(this.form.country, option.country || '')
+        await this.utils.enterText(this.form.email, option.email || '');
+        await this.utils.enterText(this.form.password, option.password || '');
+        await this.utils.enterText(this.form.confirmPassword, option.confirmPassword || '');
     }
 }
 
