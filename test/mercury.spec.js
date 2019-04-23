@@ -1,5 +1,5 @@
 require('chromedriver');
-const Builder = require('selenium-webdriver');
+const { Builder, Key, By, until } = require('selenium-webdriver');
 
 const chai = require('chai');
 const expect = chai.expect;

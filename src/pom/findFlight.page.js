@@ -1,4 +1,4 @@
-const By = require('selenium-webdriver');
+const { Builder, Key, By, until } = require('selenium-webdriver');
 const Page = require('../page');
 
 class FindFlight extends Page {
