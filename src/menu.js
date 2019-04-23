@@ -1,11 +1,11 @@
 const { Builder, Key, By, until } = require('selenium-webdriver');
 
-class Nav {
+class Menu {
     constructor(driver) {
         this.driver = driver;
     }
 
-    get headerMenuNotAuth() {
+    get headerNotAuth() {
         return {
             signOnButton: this.driver.findElement(By.xpath('//a[.=\'SIGN-ON\']')),
             registerButton: this.driver.findElement(By.xpath('//a[.=\'REGISTER\']')),
@@ -14,7 +14,7 @@ class Nav {
         }
     }
 
-    get headerMenuAuth() {
+    get headerAuth() {
         return {
             signOffButton: this.driver.findElement(By.xpath('//a[.=\'SIGN-OFF\']')),
             itineraryButton: this.driver.findElement(By.xpath('//a[.=\'ITINERARY\']')),
@@ -22,7 +22,7 @@ class Nav {
         }
     }
 
-    get sideMenu() {
+    get leftSide() {
         return {
             homeButton: this.driver.findElement(By.xpath('//a[.=\'Home\']')),
             flightsButton: this.driver.findElement(By.xpath('//a[.=\'Flights\']')),
@@ -35,4 +35,4 @@ class Nav {
     }
 }
 
-module.exports = Nav;
+module.exports = Menu;

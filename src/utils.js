@@ -1,6 +1,6 @@
 const { Builder, Key, By, until } = require('selenium-webdriver');
 
-class Wrapper {
+class Utils {
     constructor(driver) {
         this.driver = driver;
     }
@@ -16,4 +16,4 @@ class Wrapper {
     }
 }
 
-module.exports = Wrapper;
+module.exports = Utils;
