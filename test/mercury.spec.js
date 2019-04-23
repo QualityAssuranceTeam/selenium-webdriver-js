@@ -1,7 +1,8 @@
 require('chromedriver');
 const RegisterPage = require('../src/pom/register.page');
 const LoginPage = require('../src/pom/login.page');
-const FindFlights = require('../src/pom/findFlights.page');
+const FindFlightPage = require('../src/pom/findFlight.page');
+const SelectFlightPage = require('../src/pom/selectFlight.page');
 
 const chai = require('chai');
 const expect = chai.expect;
@@ -77,7 +78,7 @@ describe('Mercury Tours', () => {
                 const pageTitle = await driver.getTitle();
                 expect(pageTitle).to.have.string('Find a Flight: Mercury Tours');
             })
-            it('successfully find a flight', async () => {
+            it('successfully book a flight', async () => {
                 const flightDetails = {
                     passengers: '2',
                     departing: 'London',
@@ -88,19 +89,23 @@ describe('Mercury Tours', () => {
                     toDay: '15',
                     airline: 'Unified Airlines'
                 };
-                const findFlightsPage = new FindFlights(driver);
-                await findFlightsPage.open();
-                await findFlightsPage.button.oneWay.click();
-                await findFlightsPage.button.roundTrip.click();
-                await findFlightsPage.selectFlightDetails(flightDetails);
-                await findFlightsPage.button.businessClass.click();
-                await findFlightsPage.button.firstClass.click();
-                await findFlightsPage.button.continueButton.click();
-                const pageTitle = await driver.getTitle();
-                expect(pageTitle).to.have.string('Select a Flight: Mercury Tours');
-    
-                const flightInfo = await driver.findElement(By.xpath(`//b/font[contains(text(),'${flightDetails.departing} to')]`)).getText();
-                expect(flightInfo).to.have.string(`${flightDetails.departing} to ${flightDetails.arriving}`)
+                const findFlightPage = new FindFlightPage(driver);
+                await findFlightPage.open();
+                await findFlightPage.button.oneWay.click();
+                await findFlightPage.button.roundTrip.click();
+                await findFlightPage.selectFlightDetails(flightDetails);
+                await findFlightPage.button.businessClass.click();
+                await findFlightPage.button.firstClass.click();
+                await findFlightPage.button.continueButton.click();
+                const selectFlightPageTitle = await driver.getTitle();
+                expect(selectFlightPageTitle).to.have.string('Select a Flight: Mercury Tours');
+                const selectFlightPage = new SelectFlightPage(driver);
+                await selectFlightPage.flight.depart.$281.click();
+                await selectFlightPage.flight.return.$282.click();
+                await selectFlightPage.button.continueButton.click();
+                const bookFlightPageTitle = await driver.getTitle();
+                expect(bookFlightPageTitle).to.have.string('Book a Flight: Mercury Tours');
+                // TODO: Book a flight
             });
         });
     });

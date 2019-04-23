@@ -15,7 +15,7 @@ class FindFlight extends Page {
             businessClass: this.driver.findElement(By.xpath('//input[@name=\'servClass\' and @value=\'Business\']')),
             firstClass: this.driver.findElement(By.xpath('//input[@name=\'servClass\' and @value=\'First\']')),
             continueButton: this.driver.findElement(By.name('findFlights'))
-        }
+        };
     }
 
     get dropdown() {
@@ -28,7 +28,7 @@ class FindFlight extends Page {
             toMonth: 'toMonth',
             toDay: 'toDay',
             airline: 'airline'
-        }
+        };
     }
 
     async selectFlightDetails(option = {}) {
