@@ -7,6 +7,7 @@ class Utils {
 
     async enterText(target, value) {
         await target.click();
+        await target.clear();
         await target.sendKeys(value);
     }
 

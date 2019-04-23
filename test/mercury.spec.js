@@ -8,6 +8,7 @@ const RegisterPage = require('../src/pom/register.page');
 const LoginPage = require('../src/pom/login.page');
 const FindFlightPage = require('../src/pom/findFlight.page');
 const SelectFlightPage = require('../src/pom/selectFlight.page');
+const BookFlightPage = require('../src/pom/bookFlight.page');
 
 const formData = {
     firstName: 'test',
@@ -106,6 +107,7 @@ describe('Mercury Tours', () => {
                 await selectFlightPage.button.continueButton.click();
                 const bookFlightPageTitle = await driver.getTitle();
                 expect(bookFlightPageTitle).to.have.string('Book a Flight: Mercury Tours');
+                const bookFlightPage = new BookFlightPage(driver);
                 // TODO: Book a flight
             });
         });
