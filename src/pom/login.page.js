@@ -1,5 +1,5 @@
+const By = require('selenium-webdriver');
 const Page = require('../page');
-const { Builder, Key, By, until } = require('selenium-webdriver');
 
 class Login extends Page {
     constructor(driver) {

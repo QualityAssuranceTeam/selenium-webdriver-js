@@ -1,12 +1,13 @@
 require('chromedriver');
+const Builder = require('selenium-webdriver');
+
+const chai = require('chai');
+const expect = chai.expect;
+
 const RegisterPage = require('../src/pom/register.page');
 const LoginPage = require('../src/pom/login.page');
 const FindFlightPage = require('../src/pom/findFlight.page');
 const SelectFlightPage = require('../src/pom/selectFlight.page');
-
-const chai = require('chai');
-const expect = chai.expect;
-const { Builder, Key, By, until } = require('selenium-webdriver');
 
 const formData = {
     firstName: 'test',
