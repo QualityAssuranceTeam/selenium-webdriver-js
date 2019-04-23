@@ -22,8 +22,8 @@ class Login extends Page {
     }
 
     async fillInForm(option = {}) {
-        await this.enterText(this.form.userName, option.userName || '');
-        await this.enterText(this.form.password, option.password || '');
+        await this.wrapper.enterText(this.form.userName, option.userName || '');
+        await this.wrapper.enterText(this.form.password, option.password || '');
     }
 }
 

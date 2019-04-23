@@ -17,6 +17,7 @@ const formData = {
     city: 'Test City',
     state: 'State of Test',
     postalCode: '01T C23',
+    country: 'UNITED KINGDOM',
     email: 'test@test.com',
     password: 'test0123',
     confirmPassword: 'test0123'
@@ -65,10 +66,6 @@ describe('Mercury Tours', () => {
             expect(pageTitle).to.have.string('Find a Flight: Mercury Tours');
         })
         it('successfully find a flight', async () => {const flight = { passCount: '3' };
-            const findFlightsPage = new FindFlights(driver);
-            await findFlightsPage.open();
-            await findFlightsPage.button.oneWay.click();
-            await findFlightsPage.button.roundTrip.click();
             const flightDetails = {
                 passengers: '2',
                 departing: 'London',
@@ -76,15 +73,20 @@ describe('Mercury Tours', () => {
                 fromDay: '11',
                 arriving: 'Paris',
                 toMonth: 'June',
-                toDay: '15'
+                toDay: '15',
+                airline: 'Unified Airlines'
             };
+            const findFlightsPage = new FindFlights(driver);
+            await findFlightsPage.open();
+            await findFlightsPage.button.oneWay.click();
+            await findFlightsPage.button.roundTrip.click();
             await findFlightsPage.selectFlightDetails(flightDetails);
             await findFlightsPage.button.businessClass.click();
             await findFlightsPage.button.firstClass.click();
-            await findFlightsPage.selectOption(findFlightsPage.dropdown.airline, 'Unified Airlines');
             await findFlightsPage.button.continueButton.click();
             const pageTitle = await driver.getTitle();
             expect(pageTitle).to.have.string('Select a Flight: Mercury Tours');
+
             const flightInfo = await driver.findElement(By.xpath(`//b/font[contains(text(),'${flightDetails.departing} to')]`)).getText();
             expect(flightInfo).to.have.string(`${flightDetails.departing} to ${flightDetails.arriving}`)
         });

@@ -19,8 +19,7 @@ class Register extends Page {
             city: this.driver.findElement(By.name('city')),
             state: this.driver.findElement(By.name('state')),
             postalCode: this.driver.findElement(By.name('postalCode')),
-            countryDropdown: this.driver.findElement(By.name('country')),
-            countryUK: this.driver.findElement(By.xpath('//select/option[contains(text(),\'UNITED KINGDOM\')]')),
+            country: 'country',
             email: this.driver.findElement(By.name('email')),
             password: this.driver.findElement(By.name('password')),
             confirmPassword: this.driver.findElement(By.name('confirmPassword')),
@@ -41,24 +40,19 @@ class Register extends Page {
     }
 
     async fillInForm(option = {}) {
-        await this.enterText(this.form.firstName, option.firstName || '')
-        await this.enterText(this.form.lastName, option.lastName || '');
-        await this.enterText(this.form.phone, option.phone || '');
-        await this.enterText(this.form.userName, option.userName || '');
-        await this.enterText(this.form.address1, option.address1 || '');
-        await this.enterText(this.form.address2, option.address2 || '');
-        await this.enterText(this.form.city, option.city || '');
-        await this.enterText(this.form.state, option.state || '');
-        await this.enterText(this.form.postalCode, option.postalCode || '');
-        await this.selectCountry();
-        await this.enterText(this.form.email, option.email || '');
-        await this.enterText(this.form.password, option.password || '');
-        await this.enterText(this.form.confirmPassword, option.confirmPassword || '');
-    }
-    
-    async selectCountry() {
-        await this.form.countryDropdown.click();
-        await this.form.countryUK.click();
+        await this.wrapper.enterText(this.form.firstName, option.firstName || '')
+        await this.wrapper.enterText(this.form.lastName, option.lastName || '');
+        await this.wrapper.enterText(this.form.phone, option.phone || '');
+        await this.wrapper.enterText(this.form.userName, option.userName || '');
+        await this.wrapper.enterText(this.form.address1, option.address1 || '');
+        await this.wrapper.enterText(this.form.address2, option.address2 || '');
+        await this.wrapper.enterText(this.form.city, option.city || '');
+        await this.wrapper.enterText(this.form.state, option.state || '');
+        await this.wrapper.enterText(this.form.postalCode, option.postalCode || '');
+        await this.wrapper.selectOption(this.form.country, option.country || '')
+        await this.wrapper.enterText(this.form.email, option.email || '');
+        await this.wrapper.enterText(this.form.password, option.password || '');
+        await this.wrapper.enterText(this.form.confirmPassword, option.confirmPassword || '');
     }
 }
 

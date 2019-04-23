@@ -33,18 +33,14 @@ class FindFlight extends Page {
     }
 
     async selectFlightDetails(option = {}) {
-        await this.selectOption(this.dropdown.passengers, option.passengers || '');
-        await this.selectOption(this.dropdown.departing, option.departing || '');
-        await this.selectOption(this.dropdown.fromMonth, option.fromMonth || '');
-        await this.selectOption(this.dropdown.fromDay, option.fromDay || '');
-        await this.selectOption(this.dropdown.arriving, option.arriving || '');
-        await this.selectOption(this.dropdown.toMonth, option.toMonth || '');
-        await this.selectOption(this.dropdown.toDay, option.toDay || '');
-    }
-
-    async selectOption(target, text) {
-        await this.driver.findElement(By.name(target)).click();
-        await this.driver.findElement(By.xpath(`//select[@name=\'${target}\']/option[contains(text(),\'${text}\')]`)).click();
+        await this.wrapper.selectOption(this.dropdown.passengers, option.passengers || '');
+        await this.wrapper.selectOption(this.dropdown.departing, option.departing || '');
+        await this.wrapper.selectOption(this.dropdown.fromMonth, option.fromMonth || '');
+        await this.wrapper.selectOption(this.dropdown.fromDay, option.fromDay || '');
+        await this.wrapper.selectOption(this.dropdown.arriving, option.arriving || '');
+        await this.wrapper.selectOption(this.dropdown.toMonth, option.toMonth || '');
+        await this.wrapper.selectOption(this.dropdown.toDay, option.toDay || '');
+        await this.wrapper.selectOption(this.dropdown.airline, option.airline || '');
     }
 
     async open(timeout = 1000) {
