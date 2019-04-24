@@ -1,4 +1,4 @@
-const { Builder, Key, By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const Page = require('../page');
 
 class FindFlight extends Page {
@@ -31,15 +31,15 @@ class FindFlight extends Page {
         };
     }
 
-    async selectFlightDetails(option = {}) {
-        await this.utils.selectOption(this.dropdown.passengers, option.passengers || '');
-        await this.utils.selectOption(this.dropdown.departing, option.departing || '');
-        await this.utils.selectOption(this.dropdown.fromMonth, option.fromMonth || '');
-        await this.utils.selectOption(this.dropdown.fromDay, option.fromDay || '');
-        await this.utils.selectOption(this.dropdown.arriving, option.arriving || '');
-        await this.utils.selectOption(this.dropdown.toMonth, option.toMonth || '');
-        await this.utils.selectOption(this.dropdown.toDay, option.toDay || '');
-        await this.utils.selectOption(this.dropdown.airline, option.airline || '');
+    async selectFlightDetails(options = {}) {
+        await this.utils.selectOption(this.dropdown.passengers, options.passengers || '');
+        await this.utils.selectOption(this.dropdown.departing, options.departing || '');
+        await this.utils.selectOption(this.dropdown.fromMonth, options.fromMonth || '');
+        await this.utils.selectOption(this.dropdown.fromDay, options.fromDay || '');
+        await this.utils.selectOption(this.dropdown.arriving, options.arriving || '');
+        await this.utils.selectOption(this.dropdown.toMonth, options.toMonth || '');
+        await this.utils.selectOption(this.dropdown.toDay, options.toDay || '');
+        await this.utils.selectOption(this.dropdown.airline, options.airline || '');
     }
 }
 

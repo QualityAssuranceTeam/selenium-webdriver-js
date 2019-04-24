@@ -1,4 +1,4 @@
-const { Builder, Key, By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const Page = require('../page');
 
 class Register extends Page {
@@ -33,20 +33,20 @@ class Register extends Page {
         };
     }
 
-    async fillInForm(option = {}) {
-        await this.utils.enterText(this.form.firstName, option.firstName || '')
-        await this.utils.enterText(this.form.lastName, option.lastName || '');
-        await this.utils.enterText(this.form.phone, option.phone || '');
-        await this.utils.enterText(this.form.userName, option.userName || '');
-        await this.utils.enterText(this.form.address1, option.address1 || '');
-        await this.utils.enterText(this.form.address2, option.address2 || '');
-        await this.utils.enterText(this.form.city, option.city || '');
-        await this.utils.enterText(this.form.state, option.state || '');
-        await this.utils.enterText(this.form.postalCode, option.postalCode || '');
-        await this.utils.selectOption(this.form.country, option.country || '')
-        await this.utils.enterText(this.form.email, option.email || '');
-        await this.utils.enterText(this.form.password, option.password || '');
-        await this.utils.enterText(this.form.confirmPassword, option.confirmPassword || '');
+    async fillInForm(options = {}) {
+        await this.utils.enterText(this.form.firstName, options.firstName || '')
+        await this.utils.enterText(this.form.lastName, options.lastName || '');
+        await this.utils.enterText(this.form.phone, options.phone || '');
+        await this.utils.enterText(this.form.userName, options.userName || '');
+        await this.utils.enterText(this.form.address1, options.address1 || '');
+        await this.utils.enterText(this.form.address2, options.address2 || '');
+        await this.utils.enterText(this.form.city, options.city || '');
+        await this.utils.enterText(this.form.state, options.state || '');
+        await this.utils.enterText(this.form.postalCode, options.postalCode || '');
+        await this.utils.selectOption(this.form.country, options.country || '')
+        await this.utils.enterText(this.form.email, options.email || '');
+        await this.utils.enterText(this.form.password, options.password || '');
+        await this.utils.enterText(this.form.confirmPassword, options.confirmPassword || '');
     }
 }
 

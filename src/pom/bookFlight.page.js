@@ -1,4 +1,4 @@
-const { Builder, Key, By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const Page = require('../page');
 
 class BookFlight extends Page {
@@ -56,45 +56,45 @@ class BookFlight extends Page {
         };
     }
 
-    async fillInForm(option = {}) {
-        await this.fillInPassengers(option);
-        await this.fillInCreditCard(option);
-        await this.fillInBillingAddress(option);
-        await this.fillInDeliveryAddress(option);
+    async fillInForm(options = {}) {
+        await this.fillInPassengers(options);
+        await this.fillInCreditCard(options);
+        await this.fillInBillingAddress(options);
+        await this.fillInDeliveryAddress(options);
     }
 
-    async fillInPassengers (option = {}) {
-        await this.utils.enterText(this.form.passengers.firstName, option.passengers.firstName || '');
-        await this.utils.enterText(this.form.passengers.lastName, option.passengers.lastName || '');
-        await this.utils.selectOption(this.dropdown.passengers.meal, option.passengers.meal || '');
+    async fillInPassengers (options = {}) {
+        await this.utils.enterText(this.form.passengers.firstName, options.passengers.firstName || '');
+        await this.utils.enterText(this.form.passengers.lastName, options.passengers.lastName || '');
+        await this.utils.selectOption(this.dropdown.passengers.meal, options.passengers.meal || '');
     }
 
-    async fillInCreditCard (option = {}) {
-        await this.utils.selectOption(this.dropdown.creditCard.cardType, option.creditCard.cardType || '');
-        await this.utils.enterText(this.form.creditCard.number, option.creditCard.number || '');
-        await this.utils.selectOption(this.dropdown.creditCard.expMonth, option.creditCard.expMonth || '');
-        await this.utils.selectOption(this.dropdown.creditCard.expYear, option.creditCard.expYear || '');
-        await this.utils.enterText(this.form.creditCard.firstName, option.creditCard.firstName || '');
-        await this.utils.enterText(this.form.creditCard.middleName, option.creditCard.middleName || '');
-        await this.utils.enterText(this.form.creditCard.lastName, option.creditCard.lastName || '');
+    async fillInCreditCard (options = {}) {
+        await this.utils.selectOption(this.dropdown.creditCard.cardType, options.creditCard.cardType || '');
+        await this.utils.enterText(this.form.creditCard.number, options.creditCard.number || '');
+        await this.utils.selectOption(this.dropdown.creditCard.expMonth, options.creditCard.expMonth || '');
+        await this.utils.selectOption(this.dropdown.creditCard.expYear, options.creditCard.expYear || '');
+        await this.utils.enterText(this.form.creditCard.firstName, options.creditCard.firstName || '');
+        await this.utils.enterText(this.form.creditCard.middleName, options.creditCard.middleName || '');
+        await this.utils.enterText(this.form.creditCard.lastName, options.creditCard.lastName || '');
     }
 
-    async fillInBillingAddress (option = {}) {
-        await this.utils.enterText(this.form.billing.address1, option.billing.address1 || '');
-        await this.utils.enterText(this.form.billing.address2, option.billing.address2 || '');
-        await this.utils.enterText(this.form.billing.city, option.billing.city || '');
-        await this.utils.enterText(this.form.billing.state, option.billing.state || '');
-        await this.utils.enterText(this.form.billing.postalCode, option.billing.postalCode || '');
-        await this.utils.selectOption(this.dropdown.billing.country, option.billing.country || '');
+    async fillInBillingAddress (options = {}) {
+        await this.utils.enterText(this.form.billing.address1, options.billing.address1 || '');
+        await this.utils.enterText(this.form.billing.address2, options.billing.address2 || '');
+        await this.utils.enterText(this.form.billing.city, options.billing.city || '');
+        await this.utils.enterText(this.form.billing.state, options.billing.state || '');
+        await this.utils.enterText(this.form.billing.postalCode, options.billing.postalCode || '');
+        await this.utils.selectOption(this.dropdown.billing.country, options.billing.country || '');
     }
 
-    async fillInDeliveryAddress (option = {}) {
-        await this.utils.enterText(this.form.delivery.address1, option.delivery.address1 || '');
-        await this.utils.enterText(this.form.delivery.address2, option.delivery.address2 || '');
-        await this.utils.enterText(this.form.delivery.city, option.delivery.city || '');
-        await this.utils.enterText(this.form.delivery.state, option.delivery.state || '');
-        await this.utils.enterText(this.form.delivery.postalCode, option.delivery.postalCode || '');
-        await this.utils.selectOption(this.dropdown.delivery.country, option.delivery.country || '');
+    async fillInDeliveryAddress (options = {}) {
+        await this.utils.enterText(this.form.delivery.address1, options.delivery.address1 || '');
+        await this.utils.enterText(this.form.delivery.address2, options.delivery.address2 || '');
+        await this.utils.enterText(this.form.delivery.city, options.delivery.city || '');
+        await this.utils.enterText(this.form.delivery.state, options.delivery.state || '');
+        await this.utils.enterText(this.form.delivery.postalCode, options.delivery.postalCode || '');
+        await this.utils.selectOption(this.dropdown.delivery.country, options.delivery.country || '');
     }
 }
 
