@@ -15,19 +15,17 @@ const formData = {
     firstName: 'test',
     lastName: 'test',
     phone: '+123 (4) 567 890',
-    userName: 'test@test.test',
+    userName: '', // will be generated in a before registration method
     address1: '1 Test street',
     address2: 'Test district',
     city: 'Test City',
     state: 'State of Test',
     postalCode: '01T C23',
     country: 'UNITED KINGDOM',
-    email: 'test@test.test',
+    email: '', // will be generated in a before registration method
     password: 'test0123',
     confirmPassword: 'test0123'
 };
-
-const user = { userName: 'ciaran.noijen@example.com', password: 'test0123'};
 
 describe('Mercury Tours', () => {
     let driver;
@@ -66,6 +64,10 @@ describe('Mercury Tours', () => {
             });
         });
         context('User Registration', () => {
+            before('create a unique registration email', async () => {
+                const timeStamp = new Date().getTime();
+                formData.email = formData.userName = `${timeStamp}@test.test`;
+            });
             it('successfully register a new user', async function () {
                 this.timeout(60000);
                 const registerPage = new RegisterPage(driver);
@@ -83,7 +85,7 @@ describe('Mercury Tours', () => {
                 this.timeout(60000);
                 const loginPage = new LoginPage(driver);
                 await loginPage.open();
-                await loginPage.fillInForm(user);
+                await loginPage.fillInForm(formData);
                 await loginPage.form.loginButton.click();
                 const pageTitle = await driver.getTitle();
                 expect(pageTitle).to.have.string('Find a Flight: Mercury Tours');
@@ -98,7 +100,7 @@ describe('Mercury Tours', () => {
                 this.timeout(60000);
                 const loginPage = new LoginPage(driver);
                 await loginPage.open();
-                await loginPage.fillInForm(user);
+                await loginPage.fillInForm(formData);
                 await loginPage.form.loginButton.click();
                 const pageTitle = await driver.getTitle();
                 expect(pageTitle).to.have.string('Find a Flight: Mercury Tours');
