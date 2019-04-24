@@ -27,6 +27,8 @@ const formData = {
     confirmPassword: 'test0123'
 };
 
+const user = { userName: 'isabella.walker@example.com', password: 'test0123'};
+
 describe('Mercury Tours', () => {
     let driver;
     beforeEach('set browser', async () => {
@@ -34,12 +36,33 @@ describe('Mercury Tours', () => {
     });
     context('Non-Authenticated user', () =>{
         context('Navigation Menu', () => {
-            it('home button', async () => {
+            it('Sign-on button', async () => {
                 const page = new LoginPage(driver);
                 await page.open('/');
                 await page.menu.headerNotAuth.signOnButton.click();
                 const pageTitle = await driver.getTitle();
-                expect(pageTitle).to.have.string('Sign-on: Mercury Tours')
+                expect(pageTitle).to.have.string('Sign-on: Mercury Tours');
+            });
+            it('Register button', async () => {
+                const page = new LoginPage(driver);
+                await page.open('/');
+                await page.menu.headerNotAuth.registerButton.click();
+                const pageTitle = await driver.getTitle();
+                expect(pageTitle).to.have.string('Register: Mercury Tours');
+            });
+            it('Home button', async () => {
+                const page = new LoginPage(driver);
+                await page.open('/');
+                await page.menu.leftSide.homeButton.click();
+                const pageTitle = await driver.getTitle();
+                expect(pageTitle).to.have.string('Welcome: Mercury Tours');
+            });
+            it('Cruises button', async () => {
+                const page = new LoginPage(driver);
+                await page.open('/');
+                await page.menu.leftSide.cruisesButton.click();
+                const pageTitle = await driver.getTitle();
+                expect(pageTitle).to.have.string('Cruises: Mercury Tours');
             });
         });
         context('User Registration', () => {
@@ -55,9 +78,6 @@ describe('Mercury Tours', () => {
                 expect(userNameConfirm).to.have.string(formData.userName);
             });
         });
-    });
-    context('Authenticated user', () => {
-        const user = { userName: 'isabella.walker@example.com', password: 'test0123'};
         context('User Login', () => {
             it('successfully login a user', async function () {
                 this.timeout(60000);
@@ -71,6 +91,8 @@ describe('Mercury Tours', () => {
                 expect(signOffButtonHref).to.equal(`${loginPage.baseUrl}/mercurysignoff.php`);
             });
         });
+    });
+    context('Authenticated user', () => {
         context('Flight Finder', () => {
             beforeEach('login user', async function () {
                 this.timeout(60000);
@@ -80,7 +102,7 @@ describe('Mercury Tours', () => {
                 await loginPage.form.loginButton.click();
                 const pageTitle = await driver.getTitle();
                 expect(pageTitle).to.have.string('Find a Flight: Mercury Tours');
-            })
+            });
             it('successfully book a flight', async () => {
                 const flightDetails = {
                     passengers: '1',
