@@ -9,9 +9,10 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.1.3"
+    "mocha": "^6.1.3",
+    "mochawesome": "^3.1.2"
   },
   "scripts": {
-    "test": "mocha --recursive --timeout 30000"
+    "test": "mocha --recursive --reporter mochawesome --timeout 30000"
   }
 }
