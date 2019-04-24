@@ -23,5 +23,5 @@ jobs:
 
       - run: yarn test
       - store_artifacts:
-          path:  mochawesome-report
+          path:  mochawesome-report/mochawesome.html
           destination: mochawesome.html          
