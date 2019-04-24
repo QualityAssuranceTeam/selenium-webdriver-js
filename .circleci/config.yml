@@ -22,6 +22,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: yarn test
+
       - store_artifacts:
           path:  mochawesome-report
-          destination: mochawesome.html          
+          destination: mochawesome.html
+
+      - store_artifacts:
+          path:  screenshots
+          destination: screenshots     
