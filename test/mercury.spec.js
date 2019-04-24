@@ -175,6 +175,12 @@ describe('Mercury Tours', () => {
             });
         });
     });
+    afterEach('take a screenshot', async () => {
+        const fs = require('fs');
+        const screenshot = await driver.takeScreenshot();
+        const timeStamp = new Date().getTime();
+        fs.writeFileSync(`./screenshots/${timeStamp}.png`, screenshot, 'base64');
+    });
     afterEach('close browser', () => driver.close());
     after('quit session', () => driver.quit());
 });
