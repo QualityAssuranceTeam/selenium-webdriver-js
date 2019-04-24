@@ -82,7 +82,7 @@ describe('Mercury Tours', () => {
             })
             it('successfully book a flight', async () => {
                 const flightDetails = {
-                    passengers: '2',
+                    passengers: '1',
                     departing: 'London',
                     fromMonth: 'May',
                     fromDay: '11',
@@ -90,6 +90,38 @@ describe('Mercury Tours', () => {
                     toMonth: 'June',
                     toDay: '15',
                     airline: 'Unified Airlines'
+                };
+                const bookingDetails = {
+                    passengers: {
+                        firstName: 'Test',
+                        lastName: 'Testest',
+                        meal: 'Low Calorie'
+                    },
+                    creditCard: {
+                        cardType: 'Visa',
+                        number: '4111111111111111',
+                        expMonth: '08',
+                        expYear: '2010',
+                        firstName: 'Test',
+                        middleName: 'Testing',
+                        lastName: 'Testest'
+                    },
+                    billing: {
+                        address1: '0123 test street',
+                        address2: 'testing district',
+                        city: 'test city',
+                        state: 'state of test',
+                        postalCode: '1TE ST2',
+                        country: 'UNITED KINGDOM'
+                    },
+                    delivery: {
+                        address1: '0123 another test street',
+                        address2: 'another testing district',
+                        city: 'another test city',
+                        state: 'another state',
+                        postalCode: 'TEST0123',
+                        country: 'UNITED STATES'
+                    }
                 };
                 const findFlightPage = new FindFlightPage(driver);
                 await findFlightPage.open();
@@ -108,7 +140,10 @@ describe('Mercury Tours', () => {
                 const bookFlightPageTitle = await driver.getTitle();
                 expect(bookFlightPageTitle).to.have.string('Book a Flight: Mercury Tours');
                 const bookFlightPage = new BookFlightPage(driver);
-                // TODO: Book a flight
+                await bookFlightPage.fillInForm(bookingDetails);
+                await bookFlightPage.form.purchaseButton.click();
+                const confirmFlightPageTitle = await driver.getTitle();
+                expect(confirmFlightPageTitle).to.have.string('Flight Confirmation: Mercury Tours');
             });
         });
     });
