@@ -27,7 +27,7 @@ const formData = {
     confirmPassword: 'test0123'
 };
 
-const user = { userName: 'isabella.walker@example.com', password: 'test0123'};
+const user = { userName: 'ciaran.noijen@example.com', password: 'test0123'};
 
 describe('Mercury Tours', () => {
     let driver;
