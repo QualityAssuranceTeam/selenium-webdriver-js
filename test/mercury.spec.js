@@ -1,5 +1,5 @@
 require('chromedriver');
-const { Builder, Key, By, until } = require('selenium-webdriver');
+const { Builder } = require('selenium-webdriver');
 
 const chai = require('chai');
 const expect = chai.expect;
@@ -9,6 +9,7 @@ const LoginPage = require('../src/pom/login.page');
 const FindFlightPage = require('../src/pom/findFlight.page');
 const SelectFlightPage = require('../src/pom/selectFlight.page');
 const BookFlightPage = require('../src/pom/bookFlight.page');
+const FlightConfirmationPage = require('../src/pom/flightConfirmation.page');
 
 const formData = {
     firstName: 'test',
@@ -142,8 +143,11 @@ describe('Mercury Tours', () => {
                 const bookFlightPage = new BookFlightPage(driver);
                 await bookFlightPage.fillInForm(bookingDetails);
                 await bookFlightPage.form.purchaseButton.click();
-                const confirmFlightPageTitle = await driver.getTitle();
-                expect(confirmFlightPageTitle).to.have.string('Flight Confirmation: Mercury Tours');
+                const flightConfirmationPageTitle = await driver.getTitle();
+                expect(flightConfirmationPageTitle).to.have.string('Flight Confirmation: Mercury Tours');
+                const flightConfirmationPage = new FlightConfirmationPage(driver);
+                const confirmation = await flightConfirmationPage.form.confirmation.getText();
+                expect(confirmation).to.have.string('Your itinerary has been booked!');
             });
         });
     });

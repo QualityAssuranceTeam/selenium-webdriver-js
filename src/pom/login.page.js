@@ -1,4 +1,4 @@
-const { Builder, Key, By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const Page = require('../page');
 
 class Login extends Page {
@@ -15,9 +15,9 @@ class Login extends Page {
         };
     }
 
-    async fillInForm(option = {}) {
-        await this.utils.enterText(this.form.userName, option.userName || '');
-        await this.utils.enterText(this.form.password, option.password || '');
+    async fillInForm(options = {}) {
+        await this.utils.enterText(this.form.userName, options.userName || '');
+        await this.utils.enterText(this.form.password, options.password || '');
     }
 }
 
