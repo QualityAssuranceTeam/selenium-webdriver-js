@@ -6,6 +6,7 @@
 
 **Expected Result**:
 The user is registered and landed on a confimration page.
+---
 
 #### TC-02: User Login
 **Prerequisites**:
@@ -19,6 +20,7 @@ The user is registered and landed on a confimration page.
 
 **Expected Result**:
 The user is successfully logged in and lands on Find a Flight page.
+---
 
 #### TC-03: Book a flight
 **Prerequisites**:
@@ -40,6 +42,7 @@ The user is successfully logged in and lands on Find a Flight page.
 
 **Expected Result**:
 The flight is booked and the user lands on a Flight Confimration page.
+---
 
 #### TC-04: Itinerary preview
 **Prerequisites**:
@@ -52,6 +55,7 @@ The flight is booked and the user lands on a Flight Confimration page.
 
 **Expected Result**:
 The user lands on the Itinerary page which contains the booked flights information.
+---
 
 #### TC-05: Cancel reservations
 **Prerequisites**:
