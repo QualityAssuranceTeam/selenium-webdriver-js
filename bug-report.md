@@ -1,7 +1,7 @@
 ## BUG REPORT
 #### BUG-01: Flight Finder - search for One way tickets returns Round trip tickets
 **Prerequisites**:
-* Registered user - oliver.lo@example.com / test0123
+* Registered user - `oliver.lo@example.com / test0123`
 
 **Steps to reproduce**:
 1. Go to Mercury Tours website.
@@ -16,4 +16,4 @@
 The results only contain round trip (two way) tickets. No one way tickets are present.
 
 **Expected result**:
-The results should contain one way tickets.
+The results should contain one way tickets only.
