@@ -7,10 +7,11 @@
 1. Go to Mercury Tours website.
 2. Click on 'SIGN-ON' button.
 3. Enter registered user's credentials.
-4. Go to Flight Finder page.
-5. Select the 'One Way' checkbox.
-6. Click 'CONTINUE' button.
-7. Observe the results.
+4. Click 'SUBMIT' button.
+5. Go to Flight Finder page.
+6. Select the 'One Way' checkbox.
+7. Click 'CONTINUE' button.
+8. Observe the results.
 
 **Observed result**:
 The results only contain round trip (two way) tickets. No one way tickets are present.
