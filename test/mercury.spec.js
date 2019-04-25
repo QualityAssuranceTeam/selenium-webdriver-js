@@ -179,7 +179,12 @@ describe('Mercury Tours', () => {
         const fs = require('fs');
         const screenshot = await driver.takeScreenshot();
         const timeStamp = new Date().getTime();
-        fs.writeFileSync(`./screenshots/${timeStamp}.png`, screenshot, 'base64');
+        try {
+            fs.writeFileSync(`./screenshots/${timeStamp}.png`, screenshot, 'base64');
+        }
+        catch(err) {
+            console.log(`Cannot create file or directory ${err.path}`);
+        } 
     });
     afterEach('close browser', () => driver.close());
     after('quit session', () => driver.quit());
