@@ -1,6 +1,6 @@
+[![CircleCI](https://circleci.com/gh/QualityAssuranceTeam/selenium-webdriver-js.svg?style=svg)](https://circleci.com/gh/QualityAssuranceTeam/selenium-webdriver-js)
 # Automated UI Testing
 Selenium Webdriver, Chai and Mocha based project.
-[![CircleCI](https://circleci.com/gh/QualityAssuranceTeam/selenium-webdriver-js.svg?style=svg)](https://circleci.com/gh/QualityAssuranceTeam/selenium-webdriver-js)
 
 ## Getting started
 
