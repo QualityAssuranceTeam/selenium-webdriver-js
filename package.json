@@ -13,6 +13,7 @@
     "mochawesome": "^3.1.2"
   },
   "scripts": {
-    "test": "mocha --recursive --reporter mochawesome --timeout 30000"
+    "pretest": "rm -rf ./screenshots && mkdir ./screenshots",
+    "test": "mocha test/**/*.spec.js"
   }
 }
